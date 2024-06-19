@@ -7,7 +7,7 @@ def synthetic_data(w, b, num_examples):
   """生成y=Xw+b+噪声"""
   X = torch.normal(0, 1, (num_examples, len(w)))
   y = torch.matmul(X, w) + b
-  print('y.shape=', y.shape)
+  # print('y.shape=', y.shape)
   y += torch.normal(0, 0.01, y.shape)
   return X, y.reshape((-1, 1))
 
@@ -15,7 +15,7 @@ true_w = torch.tensor([2, -3.4])
 true_b = 4.2
 features, labels = synthetic_data(true_w, true_b, 1000)
 
-print('labels.shape=', labels.shape)
+# print('labels.shape=', labels.shape)
 # plt.title("Image Title")
 # plt.scatter(features[:, (1)], labels, label='Image1', c='red')
 # plt.show()
@@ -27,15 +27,15 @@ def data_iter(batch_size, features, labels):
   random.shuffle(indices)
   # print("num_examples=", num_examples, "indices=", indices)
   for i in range(0, num_examples, batch_size):
-    print('i=', i)
+    # print('i=', i)
     batch_indices = torch.tensor(indices[i: min(i + batch_size, num_examples)])
-    print(batch_indices)
+    # print(batch_indices)
     yield features[batch_indices], labels[batch_indices]
 
 batch_size = 10
 
 for X, y in data_iter(batch_size, features, labels):
-    print(X, '\n', y)
+    # print(X, '\n', y)
     break
 
 w = torch.normal(0, 0.01, size=(2, 1), requires_grad=True)
@@ -66,6 +66,7 @@ for epoch in range(num_epochs):
       l = loss(net(X, w, b), y) # X和y的小批量损失
       # 因为l形状是(batch_size, i)，而不是一个标量。l中的所有元素被加到一起
       # 并以此计算关于[w, b]的梯度
+      print(l)
       l.sum().backward()
       sgd([w, b], lr, batch_size)
   with torch.no_grad():

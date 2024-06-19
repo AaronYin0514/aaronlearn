@@ -40,9 +40,9 @@ t = torch.tensor([
     [2, 2, 2, 2],
     [3, 3, 3, 3],
 ], dtype=torch.float32)
-t2 = t.reshape(2, -1)
+# t2 = t.reshape(2, -1)
 
-print(t2)
-print(t2.shape)
+print(t.sum())
+# print(t2.shape)
 
 
