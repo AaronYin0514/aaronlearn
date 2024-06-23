@@ -1,0 +1,15 @@
+digraph {
+	graph [rankdir=BT]
+	4373142640 [label="{ grad=0.00 | value=2.00 | b}" shape=record]
+	4373144416 [label="{ grad=0.00 | value=4.00 | *}" shape=record]
+	4373142400 [label="{ grad=0.00 | value=1.00 | a}" shape=record]
+	4373143456 [label="{ grad=0.00 | value=4.00 | c}" shape=record]
+	4378692016 [label="{ grad=0.00 | value=12.00 | *}" shape=record]
+	4373143504 [label="{ grad=0.00 | value=3.00 | +}" shape=record]
+	4373142400 -> 4373143504
+	4373142400 -> 4373144416
+	4373143456 -> 4373144416
+	4373143504 -> 4378692016
+	4373144416 -> 4378692016
+	4373142640 -> 4373143504
+}
