@@ -1,8 +1,0 @@
-digraph {
-	graph [rankdir=BT]
-	4370678032 [label="{ grad=0.00 | value=3.00 | +}" shape=record]
-	4370678096 [label="{ grad=0.00 | value=2.00 | b}" shape=record]
-	4370612176 [label="{ grad=0.00 | value=1.00 | a}" shape=record]
-	4370612176 -> 4370678032
-	4370678096 -> 4370678032
-}

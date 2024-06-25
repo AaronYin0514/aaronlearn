@@ -16,13 +16,17 @@ for t in range(20):
     ix = (t * batch_size) % len(x)
     xx = x[ix: ix + batch_size]
     yy = y[ix: ix + batch_size]
+    # print('xx =', xx)
+    # print('yy =', yy)
     loss = mse([model.error(_x, _y) for _x, _y in zip(xx, yy)])
     loss.backward()
+    # graph = draw_graph(loss, 'backward')
+    # graph.render('test.svg', view=True)
     model.a -= learning_rate * model.a.grad
     model.b -= learning_rate * model.b.grad
     model.a.grad = 0.0
     model.b.grad = 0.0
-    print(model.string())
+    # print(model.string())
 
 # 计算图膨胀
 model = Linear()
