@@ -41,9 +41,6 @@ class Linear:
         return self.a * x + self.b
     
     def error(self, x, y):
-        print('x =', x)
-        print('y =', y)
-        print('forward x =', self.forward(x))
         '''
         当前数据的模型误差
         '''
