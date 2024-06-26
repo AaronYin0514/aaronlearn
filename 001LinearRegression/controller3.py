@@ -13,7 +13,10 @@ def synthetic_data(w, b, num_examples):
 
 true_w = torch.tensor([2, -3.4])
 true_b = 4.2
-features, labels = synthetic_data(true_w, true_b, 1000)
+features, labels = synthetic_data(true_w, true_b, 1)
+
+print('features =', features)
+print('true_w =', true_w)
 
 # print('labels.shape=', labels.shape)
 # plt.title("Image Title")
@@ -41,6 +44,9 @@ for X, y in data_iter(batch_size, features, labels):
 w = torch.normal(0, 0.01, size=(2, 1), requires_grad=True)
 b = torch.zeros(1, requires_grad=True)
 
+print('w =', w)
+print('b =', b)
+
 def linreg(X, w, b):
    '''线性回归模型'''
    return torch.matmul(X, w) + b
@@ -66,7 +72,7 @@ for epoch in range(num_epochs):
       l = loss(net(X, w, b), y) # X和y的小批量损失
       # 因为l形状是(batch_size, i)，而不是一个标量。l中的所有元素被加到一起
       # 并以此计算关于[w, b]的梯度
-      print(l)
+      # print(l)
       l.sum().backward()
       sgd([w, b], lr, batch_size)
   with torch.no_grad():
