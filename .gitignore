@@ -3,3 +3,4 @@ tt.py
 data/
 __pycache__/*
 test*
+*.csv
