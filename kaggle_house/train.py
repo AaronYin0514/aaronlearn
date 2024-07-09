@@ -4,6 +4,7 @@ from d2l import torch as d2l
 import numpy as np
 import pandas as pd
 from models import KaggleHouseModel
+import argparse
 
 loss = torch.nn.MSELoss()
 
@@ -24,12 +25,15 @@ def train(net, train_features, train_labels, test_features, test_labels, num_epo
       optimizer.zero_grad()
       # X, y = X.to(device), y.to(device)
       l = loss(net(X), y)
+      # print(l.item())
       l.backward()
       optimizer.step()
-    train_ls.append(log_rmse(net, train_features, train_labels))
+    train_log_rmse = log_rmse(net, train_features, train_labels)
+    train_ls.append(train_log_rmse)
     if test_labels is not None:
-      rmse = log_rmse(net, test_features, test_labels)
-      test_ls.append(rmse)
+      test_log_rmse = log_rmse(net, test_features, test_labels)
+      print(f'epoch: {epoch + 1}, 训练log_rmse: {float(train_log_rmse):f},  测试log_rmse: {float(test_log_rmse):f}')
+      test_ls.append(test_log_rmse)
   return train_ls, test_ls
 
 def k_fold(k, net, X_train, y_train, num_epochs, learning_rate, weigit_decay, batch_size, device):
@@ -63,9 +67,14 @@ def get_k_fold_data(k, i, X, y):
 
 def init_weights(m):
     if type(m) == torch.nn.Linear:
+        print('xxxxxx初始化啦-----')
         torch.nn.init.normal_(m.weight, std=0.01)
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description='训练kaggle房价预测')
+    parser.add_argument('-k', '--kz', type=bool, help="是否使用k折交叉训练")
+    args = parser.parse_args()
+    print(args)
     # print(train_features.shape) # torch.Size([1460, 330])
     # device = torch.device('mps')
     device = torch.device('cpu')
@@ -76,17 +85,23 @@ if __name__ == "__main__":
     net.apply(init_weights)
     net.to(device)
 
-    loss = torch.nn.MSELoss()
+    # loss = torch.nn.MSELoss()
 
-    num_epochs, lr, weight_decay, batch_size = 1000, 5, 0, 32
-    k = 5
+    num_epochs, lr, weight_decay, batch_size = 10, 5, 0, 64
+    
+    if args.kz:
+      k = 5
+      timer = d2l.Timer()
+      train_l, valid_l = k_fold(k, net, train_features, train_labels, num_epochs, lr, weight_decay, batch_size, device)
+      print(f'{k}-折验证: 平均训练log rmse: {float(train_l):f}, ', f'平均验证log rmse: {float(valid_l):f}')
+      print(f'{timer.stop():.5f} sec')
+    else:
+      test_features = train_features[1000:]
+      train_features = train_features[:1000]
+      test_labels = train_labels[1000:]
+      train_labels = train_labels[:1000]
+      train(net, train_features, train_labels, test_features, test_labels, num_epochs, lr, weight_decay, batch_size, device)
 
-    timer = d2l.Timer()
-    train_l, valid_l = k_fold(k, net, train_features, train_labels, num_epochs, lr, weight_decay, batch_size, device)
-    print(f'{k}-折验证: 平均训练log rmse: {float(train_l):f}, ', f'平均验证log rmse: {float(valid_l):f}')
-    print(f'{timer.stop():.5f} sec')
-
-    # train_ls, _ = train(net, train_features, train_labels, None, None, num_epochs, lr, weight_decay, batch_size, device)
     # print(f'{timer.stop():.5f} sec')
     # d2l.plot(np.arange(1, num_epochs + 1), [train_ls], xlabel='epoch', ylabel='log rmse', xlim=[1, num_epochs], yscale='log')
     # print(f'训练log rmse:{float(train_ls[-1]):f}')
