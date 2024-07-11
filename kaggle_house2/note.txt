@@ -3,7 +3,7 @@ MSSubClass: The building class
 MSZoning: 一般区划 RM RL ...
 LotFrontage: 与房产相连的街道的线性英尺
 LotArea: 地块面积（平方英尺）
-Street: 道路通行类型 Pave Grvl
+Street: 道路通行类型
 Alley: 巷道通道类型
 LotShape: 财产的总体形状
 LandContour: 物业的平整度
@@ -14,7 +14,7 @@ Neighborhood: 艾姆斯市区内的实际位置
 Condition1:距离主干道或铁路的距离
 Condition2:距离主干道或铁路的距离（如果有第二条主干道或铁路）
 BldgType: 住宅类型
-HouseStyle:住宅风格 1.5Fin 1.5Unf 1Story 2.5Fin 2.5Unf 2Story SFoyer SLvl
+HouseStyle:住宅风格
 OverallQual: 整体材料和装修质量
 OverallCond: 整体状况评级
 YearBuilt: 原始建造日期
@@ -23,22 +23,22 @@ RoofStyle: 屋顶类型
 RoofMatl: 屋顶材料
 Exterior1st: 房屋外墙覆盖
 Exterior2nd: 房屋外墙覆盖（如果有多种材料）
-MasVnrType: 砌体贴面类型 BrkCmn BrkFace NA None Stone
+MasVnrType: 砌体贴面类型
 MasVnrArea: 砌体贴面面积（平方英尺）
-ExterQual: 外部材料质量 Ex Fa Gd TA 
-ExterCond: 外部材料的当前状况 Ex Fa Gd Po TA
-Foundation: 地基类型 BrkTil CBlock PConc Slab Stone Wood
-BsmtQual:地下室高度 Ex Fa Gd NA TA
-BsmtCond:地下室的一般状况 Fa Gd NA Po TA
-BsmtExposure: 步入式或花园层地下室墙壁 Av Gd Mn NA No
-BsmtFinType1: 地下室完工面积的质量 ALQ BLQ GLQ LwQ NA Rec Unf
+ExterQual: 外部材料质量
+ExterCond: 外部材料的当前状况
+Foundation: 地基类型
+BsmtQual:地下室高度
+BsmtCond:地下室的一般状况
+BsmtExposure: 步入式或花园层地下室墙壁
+BsmtFinType1: 地下室完工面积的质量
 BsmtFinSF1: 类型 1 完工面积（平方英尺）
 BsmtFinType2: 第二完工面积（如果有）的质量
 BsmtFinSF2: 类型 2 完工面积（平方英尺）
 BsmtUnfSF: 地下室未完工面积（平方英尺）
 TotalBsmtSF: 地下室总面积（平方英尺）
 Heating: 供暖类型
-HeatingQC: 供暖质量和状况 Ex Fa Gd Po TA
+HeatingQC: 供暖质量和状况
 CentralAir: 中央空调空调
 Electrical: 电气系统
 1stFlrSF: 一楼平方英尺
@@ -51,26 +51,26 @@ FullBath: 地上全浴室
 HalfBath: 地上半浴室
 Bedroom: 地下室以上卧室数量
 Kitchen: 厨房数量
-KitchenQual: 厨房质量 Ex Fa Gd TA
+KitchenQual: 厨房质量
 TotRmsAbvGrd: 地上房间总数（不包括浴室）
-Functional: 家庭功能评级 Maj1 Maj2 Min1 Min2 Mod Sev Typ
+Functional: 家庭功能评级
 Fireplaces: 壁炉数量
-FireplaceQu: 壁炉质量 Ex Fa Gd NA Po TA
+FireplaceQu: 壁炉质量
 GarageType: 车库位置
 GarageYrBlt:车库建造年份
-GarageFinish: 车库内部装修 Fin NA RFn Unf
+GarageFinish: 车库内部装修
 GarageCars: 车库汽车容量
 GarageArea: 车库面积（平方英尺）
-GarageQual: 车库质量 Ex Fa Gd NA Po TA
+GarageQual: 车库质量
 GarageCond: 车库状况
-PavedDrive: 铺砌车道 N P Y
+PavedDrive: 铺砌车道
 WoodDeckSF: 木甲板面积（平方英尺）
 OpenPorchSF: 开放式门廊面积（平方英尺）
 EnclosedPorch: 封闭式门廊面积（平方英尺）
 3SsnPorch: 三季门廊面积（平方英尺）
 ScreenPorch:屏风门廊面积（平方英尺）
 PoolArea: 泳池面积（平方英尺）
-PoolQC: 泳池质量 Ex Fa Gd NA
+PoolQC: 泳池质量
 Fence: 围栏质量
 MiscFeature: 其他类别未涵盖的其他功能
 MiscVal: $价值杂项
@@ -80,24 +80,7 @@ SaleType: 销售类型
 SaleCondition: 销售条件
 
 
-'BsmtFinType1',   ALQ BLQ GLQ LwQ NA Rec Unf
-'MasVnrType',  BrkCmn BrkFace NA None Stone
-'Foundation',  BrkTil CBlock PConc Slab Stone Wood
-'HouseStyle',  1.5Fin 1.5Unf 1Story 2.5Fin 2.5Unf 2Story SFoyer SLvl
-'Functional',  Maj1 Maj2 Min1 Min2 Mod Sev Typ
-'BsmtExposure',   Av Gd Mn NA No
-'GarageFinish',  Fin NA RFn Unf
-'PavedDrive',   N P Y
-'Street',  Pave Grvl
-'ExterQual',  Ex Fa Gd TA 
-'ExterCond',  Ex Fa Gd Po TA
-'KitchenQual',Ex Fa Gd TA
-'HeatingQC',  Ex Fa Gd Po TA
-'BsmtQual',   Ex Fa Gd NA TA
-BsmtCond      Fa Gd NA Po TA
-'FireplaceQu',Ex Fa Gd NA Po TA
-'GarageQual', Ex Fa Gd NA Po TA
-'PoolQC'      Ex Fa Gd NA
+
 
 
 
