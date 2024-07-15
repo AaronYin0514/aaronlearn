@@ -15,6 +15,13 @@ def log_rmse(net, features, labels):
   # print(rmse)
   return rmse.item()
 
+def log_rmse2(net, features, labels):
+  # 为了在取对数时进一步稳定该值，将小于1的值设置为1
+  clipped_preds = torch.clamp(net(features), 1, float('inf'))
+  rmse = torch.sqrt(loss(torch.log(clipped_preds), torch.log(labels)))
+  # print(rmse)
+  return rmse.item()
+
 def train(net, train_features, train_labels, test_features, test_labels, num_epochs, learning_rate, weight_decay, batch_size, device):
   train_ls, test_ls = [], []
   train_iter = d2l.load_array((train_features, train_labels), batch_size)
