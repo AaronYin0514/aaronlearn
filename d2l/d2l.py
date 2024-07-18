@@ -204,7 +204,7 @@ def load_data_fashion_mnist(batch_size, resize=None):
     trans = transforms.Compose(trans)
 
     project_path = os.path.dirname(os.path.abspath(__file__))
-    path = os.path.join(project_path, 'data')
+    path = os.path.join(project_path, '../data')
     mnist_train = torchvision.datasets.FashionMNIST(root=path,
                                                     train=True,
                                                     transform=trans,
