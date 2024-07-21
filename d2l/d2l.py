@@ -21,6 +21,8 @@ import requests
 from IPython import display
 from matplotlib import pyplot as plt
 
+import platform
+
 d2l = sys.modules[__name__]
 
 # Defined in file: ./chapter_preface/index.md
@@ -427,6 +429,8 @@ DATA_HUB['kaggle_house_test'] = (DATA_URL + 'kaggle_house_pred_test.csv',
 # Defined in file: ./chapter_deep-learning-computation/use-gpu.md
 def try_gpu(i=0):
     """Return gpu(i) if exists, otherwise return cpu()."""
+    if platform.system().lower() == 'darwin' and platform.processor() == 'arm':
+        return torch.device('mps')
     if torch.cuda.device_count() >= i + 1:
         return torch.device(f'cuda:{i}')
     return torch.device('cpu')
